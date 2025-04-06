@@ -4,7 +4,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ProtectedRoute({ component: Component}) {
+function ProtectedRoute({ component: Component }) {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -12,7 +12,7 @@ function ProtectedRoute({ component: Component}) {
     }, [navigate]);
 
     const validateToken = async () => {
-        
+
         const user = localStorage.getItem('user') || sessionStorage.getItem('user');
         console.log(user, "user");
         // const decodedToken = await jwtDecode(user);

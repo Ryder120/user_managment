@@ -17,7 +17,7 @@ const Home = () => {
       <Analytics />
       <Newsletter />
       <Card />
-      
+
       <Footer />
 
 

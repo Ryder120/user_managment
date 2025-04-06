@@ -18,8 +18,8 @@ const Login = () => {
       const response = await axios.post('http://localhost:3000/login', { email, password })
       toast.success('Login successful')
       console.log(response.data.user._id)
-      if(response.data.user._id) {
-       
+      if (response.data.user._id) {
+
         navigate('/')
         localStorage.setItem('userId', response.data.user._id)
         localStorage.setItem('user', response.data.user.name)

@@ -21,14 +21,14 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3000/users", formData);
-      if(response.data._id) {
+      if (response.data._id) {
         toast.success("User registered successfully!");
 
-      console.log(response.data);
-      navigate("/login"); // Redirect to login page after successful registration
+        console.log(response.data);
+        navigate("/login"); // Redirect to login page after successful registration
 
       }
-      
+
     } catch (error) {
       console.error("Error registering user:", error);
       toast.error("Failed to register user.");
@@ -37,7 +37,7 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% ...">
-    
+
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
         <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-6">
           Create an Account
@@ -67,7 +67,7 @@ const Register = () => {
               placeholder="Enter your email"
             />
           </div>
-          <Toaster richColors/>
+          <Toaster richColors />
           <div>
             <label className="block text-sm font-medium text-gray-700">Password</label>
             <input

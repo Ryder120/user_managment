@@ -32,7 +32,7 @@ function Router() {
             path: "register", element: <Register />
         },
         {
-            path:"user/:id", element: <Dashboard />
+            path: "user/:id", element: <Dashboard />
         },
         {
             path: "user/pro", element: <ProtectedRoute component={Protected} role='user' />

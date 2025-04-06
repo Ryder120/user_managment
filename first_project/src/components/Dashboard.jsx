@@ -109,7 +109,7 @@ const Dashboard = () => {
             ) : (
                 <p className="text-center text-gray-500">No user data available</p>
             )}
-<Toaster richColors/>
+            <Toaster richColors />
             {/* Edit Popup */}
             {isEditPopupOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">

@@ -38,6 +38,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('userId');
     setUser(null);
     toast.success('Logout successful');
 

@@ -7,6 +7,7 @@ const Protected = () => {
 const navigate = useNavigate();
 const logout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('userId');
     sessionStorage.removeItem('user');
    navigate('/home');
 

@@ -94,6 +94,7 @@ app.delete("/user/:id", async (req, res) => {
 
 // Login (POST)
 app.post("/login", async (req, res) => {
+  // console.log("----------", req);
   try {
     const { email, password } = req.body;
     console.log("def", email, password);

@@ -87,9 +87,22 @@ const Dashboard = () => {
             {user ? (
                 <div className="bg-white shadow-md rounded p-4">
                     <h1 className="text-2xl font-bold mb-4">User Details</h1>
-                    <p className="mb-2"><strong>ID:</strong> {user._id}</p>
-                    <p className="mb-2"><strong>Name:</strong> {user.name}</p>
-                    <p className="mb-2"><strong>Email:</strong> {user.email}</p>
+                    <table className="table-auto w-full border-collapse border border-gray-300">
+                        <tbody>
+                            <tr className="border-b">
+                                <td className="px-4 py-2 font-bold">ID:</td>
+                                <td className="px-4 py-2">{user._id}</td>
+                            </tr>
+                            <tr className="border-b">
+                                <td className="px-4 py-2 font-bold">Name:</td>
+                                <td className="px-4 py-2">{user.name}</td>
+                            </tr>
+                            <tr className="border-b">
+                                <td className="px-4 py-2 font-bold">Email:</td>
+                                <td className="px-4 py-2">{user.email}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <div className="flex space-x-4 mt-4">
                         <button
                             onClick={openEditPopup}
@@ -104,7 +117,12 @@ const Dashboard = () => {
                             Delete
                         </button>
                     </div>
-                    <button onClick={ppr} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" >Go to protected route</button>
+                    <button
+                        onClick={ppr}
+                        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mt-4"
+                    >
+                        Go to protected route
+                    </button>
                 </div>
             ) : (
                 <p className="text-center text-gray-500">No user data available</p>

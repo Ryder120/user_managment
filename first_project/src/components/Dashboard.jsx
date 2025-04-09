@@ -58,8 +58,15 @@ const Dashboard = () => {
         try {
             const response = await axios.put(`http://localhost:3000/user/${id}`, editFormData);
             setUser(response.data);
+
+            // Update localStorage with the new user name
+            localStorage.setItem('user', response.data.name);
+            // console.log('User updated:', response.data.name);
             toast.success('User updated successfully');
             closeEditPopup(); // Close popup after successful update
+
+            // Navigate to the home page with updated user data
+            navigate('/', { state: { updatedUser: response.data } });
         } catch (error) {
             toast.error('Error updating user');
         }

@@ -18,9 +18,9 @@ const Navbar = () => {
     const userId = localStorage.getItem('userId');
     setUserId(userId); // Set user ID from localStorage
     if (storedUser) {
-      setUser(storedUser);
+        setUser(storedUser); // Dynamically update the user name
     } else {
-      console.log('No user found in localStorage');
+        console.log('No user found in localStorage');
     }
   }, []);
 

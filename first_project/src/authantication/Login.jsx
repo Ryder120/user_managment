@@ -3,28 +3,42 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Toaster, toast } from 'sonner'
 
-
 const Login = () => {
   useEffect(() => { }, [])
 
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [errors, setErrors] = useState({})
+
+  const validate = () => {
+    const newErrors = {}
+    if (!email.trim()) {
+      newErrors.email = "Email is required."
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Email is invalid."
+    }
+    if (!password.trim()) {
+      newErrors.password = "Password is required."
+    } else if (password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters."
+    }
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Login clicked', email, password)
+    if (!validate()) return // Stop submission if validation fails
+
     try {
       const response = await axios.post('http://localhost:3000/login', { email, password })
       toast.success('Login successful')
-      console.log(response.data.user._id)
       if (response.data.user._id) {
         localStorage.setItem('userId', response.data.user._id)
         localStorage.setItem('user', response.data.user.name)
         navigate('/')
       }
-
-      // Navigate to another page if needed
     } catch (error) {
       toast.error(error.response?.data?.message || 'Login failed')
     }
@@ -46,8 +60,12 @@ const Login = () => {
               className='w-full px-3 py-2 border rounded'
               placeholder='Enter your email'
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                setErrors({ ...errors, email: "" }) // Clear error for email
+              }}
             />
+            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           </div>
           <div className='mb-4'>
             <label className='block text-gray-700'>Password</label>
@@ -56,8 +74,12 @@ const Login = () => {
               className='w-full px-3 py-2 border rounded'
               placeholder='Enter your password'
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value)
+                setErrors({ ...errors, password: "" }) // Clear error for password
+              }}
             />
+            {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
           </div>
           <button
             type='submit'

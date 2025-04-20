@@ -43,11 +43,9 @@ const Login = () => {
       toast.error(error.response?.data?.message || 'Login failed')
     }
   }
-
   const registerClick = () => {
     navigate('/register')
   }
-
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
       <div className='bg-white p-6 rounded shadow-lg w-[90%] max-w-[400px]'>
